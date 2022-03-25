@@ -84,11 +84,10 @@
             </div>
         @endif
 
-        <div class="content">
-            <div class="root">
-
-            </div>
+        {{-- VUE --}}
+        <div id="root">
         </div>
+
     </div>
     <script src="{{ asset('js/front-end.js') }}"></script>
 </body>
