@@ -13,7 +13,8 @@
                         <th scope="col">Titolo:</th>
                         <th scope="col">Slug:</th>
                         <th scope="col">Data di crezione:</th>
-                        <th class="d-flex justify-content-end align-items-center">Azione</th>
+                        <th scope="col">Azione</th>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,10 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->created_at }}</td>
+                            <th class="d-flex justify-content-end align-items-center">
+                                <a class="btn btn-sm btn-primary mr-2" href=""><i class="fas fa-eye"></i></a>
+                                <a class="btn btn-sm btn-warning mr-2" href=""><i class="fas fa-pencil"></i></a>
+                                <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash-alt"></i></a>
                         </tr>
                     @empty
                         <tr>
