@@ -17,6 +17,12 @@
                 class="btn btn-success">
                 Indietro
             </a>
+            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post" class="delete-form my-3 ms-2">
+                @csrf
+                @method('delete')
+                <a class="btn btn btn-warning mr-2" href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
+                <input type="submit" value="Cancella" class="btn btn btn-danger shadow-sm">
+            </form>
         </div>
     </div>
 @endsection

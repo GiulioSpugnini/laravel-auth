@@ -36,7 +36,8 @@
                                         class="fas fa-eye"></i></a>
                                 <a class="btn btn-sm btn-warning mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i
                                         class="fas fa-pencil"></i></a>
-                                <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-sm btn-danger" href="{{ route('admin.posts.destroy', $post->id) }}"><i
+                                        class="fas fa-trash-alt"></i></a>
                         </tr>
                     @empty
                         <tr>
