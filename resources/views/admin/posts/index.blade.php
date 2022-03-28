@@ -4,7 +4,8 @@
     <div class="container">
         <header class="d-flex justify-content-between align-items-center">
             <h2>I miei Posts</h2>
-            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">Aggiungi post</a>
+            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary"> <i class="fa fa-plus mr-2"></i> Aggiungi
+                post</a>
         </header>
         <div>
             <table class="table">
