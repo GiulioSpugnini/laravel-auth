@@ -42,6 +42,7 @@
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" type="submit"><i
                                             class="fas fa-trash-alt"></i></button>
+
                                 </form>
                         </tr>
                     @empty
@@ -60,10 +61,12 @@
 @section('additional-script')
     <script>
         const deleteForms = document.querySelectorAll('.delete-form');
-        deleteForms.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const accept = confirm('Sei sicuro di voler cancellare questo post?');
-            if (accept) e.target.submit();
-        });
+        deleteForms.foreach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const accept = confirm('Sei sicuro di voler cancellare questo post?');
+                if (accept) e.target.submit();
+            })
+        })
     </script>
 @endsection
