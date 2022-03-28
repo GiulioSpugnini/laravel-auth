@@ -36,8 +36,13 @@
                                         class="fas fa-eye"></i></a>
                                 <a class="btn btn-sm btn-warning mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i
                                         class="fas fa-pencil"></i></a>
-                                <a class="btn btn-sm btn-danger" href="{{ route('admin.posts.destroy', $post->id) }}"><i
-                                        class="fas fa-trash-alt"></i></a>
+                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
+                                    class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger" type="submit"><i
+                                            class="fas fa-trash-alt"></i></button>
+                                </form>
                         </tr>
                     @empty
                         <tr>
@@ -50,4 +55,15 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('additional-script')
+    <script>
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const accept = confirm('Sei sicuro di voler cancellare questo post?');
+            if (accept) e.target.submit();
+        });
+    </script>
 @endsection
