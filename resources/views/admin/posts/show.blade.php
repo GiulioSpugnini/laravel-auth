@@ -32,7 +32,7 @@
 
 @section('additional-script')
     <script>
-        const deleteForms = document.querySelectorAll('.delete-form');
+        const deleteForms = document.querySelector('.delete-form');
         deleteForms.addEventListener('submit', (e) => {
             e.preventDefault();
             const accept = confirm('Sei sicuro di voler cancellare questo post?');
