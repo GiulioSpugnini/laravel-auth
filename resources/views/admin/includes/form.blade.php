@@ -32,6 +32,9 @@
     </div>
 </div>
 <div class="d-flex justify-content-end align-items-center">
+    <a class="btn btn-secondary mr-2" href="{{ route('admin.posts.index') }}" type="button" class="btn btn-success">
+        Indietro
+    </a>
     <button type="submit" class="btn btn-success">
         Conferma
     </button>

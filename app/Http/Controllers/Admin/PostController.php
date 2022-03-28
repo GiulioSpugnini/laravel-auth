@@ -38,7 +38,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $data = $request->all();
 
@@ -47,7 +47,7 @@ class PostController extends Controller
         $post->fill($data);
         $post->save();
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', "$post->title Creato con successo")->with('type', 'success');
     }
 
     /**

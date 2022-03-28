@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-{{ session('type') }}">
+                {{ session('message') }}
+            </div>
+        @endif
         <header class="d-flex justify-content-between align-items-center">
             <h2>I miei Posts</h2>
             <a href="{{ route('admin.posts.create') }}" class="btn btn-primary"> <i class="fa fa-plus mr-2"></i> Aggiungi
@@ -29,7 +34,8 @@
                             <th class="d-flex justify-content-end align-items-center">
                                 <a class="btn btn-sm btn-primary mr-2" href="{{ route('admin.posts.show', $post->id) }}"><i
                                         class="fas fa-eye"></i></a>
-                                <a class="btn btn-sm btn-warning mr-2" href=""><i class="fas fa-pencil"></i></a>
+                                <a class="btn btn-sm btn-warning mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i
+                                        class="fas fa-pencil"></i></a>
                                 <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash-alt"></i></a>
                         </tr>
                     @empty
