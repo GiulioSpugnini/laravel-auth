@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <header>
+        <header class="d-flex justify-content-between align-items-center">
             <h2>I miei Posts</h2>
+            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">Aggiungi post</a>
         </header>
         <div>
             <table class="table">

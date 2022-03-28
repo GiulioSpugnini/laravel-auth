@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -24,9 +25,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, Post $post)
     {
-        //
+        $request->validate(
+            [
+                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->title)],
+                'content' => ['required', 'string'],
+                'image' => ['required', 'string'],
+            ]
+        );
+        return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -37,7 +45,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $post = new Post();
+        $post = fill($data);
+        $post->save();
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
