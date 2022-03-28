@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -25,15 +26,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Post $post)
+    public function create(Post $post)
     {
-        $request->validate(
-            [
-                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->title)],
-                'content' => ['required', 'string'],
-                'image' => ['required', 'string'],
-            ]
-        );
+        $post = new Post();
         return view('admin.posts.create', compact('post'));
     }
 
@@ -45,9 +40,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->title)],
+                'content' => ['required', 'string'],
+                'image' => ['required', 'string'],
+            ]
+        );
         $data = $request->all();
+
+        $data['slug'] = Str::slug($request->title);
         $post = new Post();
-        $post = fill($data);
+        $post->fill($data);
         $post->save();
 
         return redirect()->route('admin.posts.index');
@@ -56,12 +60,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post', $post->id));
     }
 
     /**
