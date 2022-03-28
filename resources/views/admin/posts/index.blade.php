@@ -23,7 +23,6 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->created_at }}</td>
-                            <td>{{ $post->created_at }}</td>
                         </tr>
                     @empty
                         <tr>
